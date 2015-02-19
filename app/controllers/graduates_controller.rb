@@ -1,40 +1,58 @@
 class GraduatesController < ApplicationController
   def index
-    @graduates = Graduate.all
+    @graduates = Graduate.all.to_json
+    respond_to do |format|
+      format.json
+      format.js
+      format.html
+    end
   end
 
   def show
     set_graduate
-  end
-
-  def new
-    @graduate = Graduate.new
+    respond_to do |format|
+      format.json
+      format.js
+      format.html
+    end
   end
 
   def create
     @graduate = Graduate.create graduate_params
     redirect_to graduate_path(@graduate)
-  end
-
-  def edit
-    set_graduate
+    respond_to do |format|
+      format.json
+      format.js
+      format.html
+    end
   end
 
   def update
     set_graduate
     @graduate.update_attributes graduate_params
     redirect_to graduate_path(@graduate)
+    respond_to do |format|
+      format.json
+      format.js
+      format.html
+    end
   end
 
   def destroy
     set_graduate
     @graduate.destroy
     redirect_to graduates_path
+    respond_to do |format|
+      format.json
+      format.js
+      format.html
+    end
   end
 
   private
   def set_graduate
     @graduate = Graduate.find params[:id]
+    @graduate = @graduate.to_json
   end
 
   def graduate_params
