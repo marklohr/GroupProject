@@ -5,8 +5,6 @@ gem 'haml-rails'
 gem 'devise'
 gem 'workflow'
 gem 'rack-cors'
-gem "nested_form"
-gem 'quiet_assets'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

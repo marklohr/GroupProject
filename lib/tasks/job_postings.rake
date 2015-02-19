@@ -11,6 +11,3 @@ task create_postings: :environment do
     })
   end
 end
-
-
-

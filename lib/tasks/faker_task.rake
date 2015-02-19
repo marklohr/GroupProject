@@ -16,7 +16,51 @@ task create_graduates: :environment do
           "http://placecage.com/100/100",
           "http://stevensegallery.com/100/100"
         ].sample,
-      bio: Faker::Lorem.paragraph(10)
+      bio: Faker::Lorem.paragraph(10),
+      experiences: [
+        Experience.create!({
+          company: Faker::Company.name,
+          description: Faker::Lorem.paragraph,
+          position: Faker::Name.title,
+          start_date: Faker::Date.backward(30),
+          end_date: Faker::Date.backward(50),
+        })
+      ],
+      links: [
+          Link.create!({
+            url: Faker::Internet.domain_name,
+            description: Faker::Lorem.paragraph,
+          })
+      ],
+      educations: [
+          Education.create!({
+            school_name: Faker::Company.name,
+            degrees: [
+              Degree.create!({
+                start_date: Faker::Date.backward(30),
+                end_date: Faker::Date.backward(50),
+                degree_type: [
+                  "Associates",
+                  "Bachelors",
+                  "Masters",
+                  "PhD"
+                  ].sample,
+                concentration: [
+                  "Engineering",
+                  "History",
+                  "Mathematics",
+                  "Philosophy",
+                  "English"
+                  ].sample,
+              })
+            ]
+          })
+      ],
+      skills: [
+          Skill.create!({
+            skill: Faker::Company.bs,
+          })
+      ]
     })
   end
 end

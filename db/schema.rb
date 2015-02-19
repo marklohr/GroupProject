@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218213225) do
+ActiveRecord::Schema.define(version: 20150218213508) do
 
   create_table "degrees", force: :cascade do |t|
     t.date     "start_date"
     t.date     "end_date"
-    t.string   "type",          limit: 255
     t.string   "concentration", limit: 255
     t.integer  "education_id",  limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "degree_type",   limit: 255
   end
 
   create_table "educations", force: :cascade do |t|
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20150218213225) do
     t.integer  "graduate_id", limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "employers", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.text     "photo",        limit: 65535
+    t.text     "bio",          limit: 65535
+    t.string   "industry",     limit: 255
+    t.date     "date_founded"
+    t.string   "email",        limit: 255
+    t.integer  "size",         limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "experiences", force: :cascade do |t|
