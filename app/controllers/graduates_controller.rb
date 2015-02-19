@@ -1,19 +1,15 @@
 class GraduatesController < ApplicationController
   def index
-    @graduates = Graduate.all.to_json
+    @graduates = Graduate.all
     respond_to do |format|
-      format.json
-      format.js
-      format.html
+      format.json { render json: @graduates.to_json }
     end
   end
 
   def show
     set_graduate
     respond_to do |format|
-      format.json
-      format.js
-      format.html
+      format.json { render json: @graduate.to_json }
     end
   end
 
@@ -21,9 +17,7 @@ class GraduatesController < ApplicationController
     @graduate = Graduate.create graduate_params
     redirect_to graduate_path(@graduate)
     respond_to do |format|
-      format.json
-      format.js
-      format.html
+      format.json { render nothing: true }
     end
   end
 
@@ -32,9 +26,7 @@ class GraduatesController < ApplicationController
     @graduate.update_attributes graduate_params
     redirect_to graduate_path(@graduate)
     respond_to do |format|
-      format.json
-      format.js
-      format.html
+      format.json { render nothing: true }
     end
   end
 
@@ -43,16 +35,13 @@ class GraduatesController < ApplicationController
     @graduate.destroy
     redirect_to graduates_path
     respond_to do |format|
-      format.json
-      format.js
-      format.html
+      format.json { render nothing: true }
     end
   end
 
   private
   def set_graduate
     @graduate = Graduate.find params[:id]
-    @graduate = @graduate.to_json
   end
 
   def graduate_params
